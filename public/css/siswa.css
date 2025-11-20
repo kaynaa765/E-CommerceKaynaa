@@ -1,0 +1,83 @@
+body {
+    background: linear-gradient(to right, #f8cdda, #fbd7e7);
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.welcome-section {
+    text-align: center;
+    padding: 2rem;
+    background-color: #fff;
+    margin: 2rem auto;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.welcome-section h2 {
+    color: #e91e63;
+    margin-bottom: 1rem;
+}
+
+.welcome-section p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.btn-belanja {
+    background-color: #e91e63;
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-belanja:hover {
+    background-color: #d81b60;
+}
+
+.produk-section {
+    padding: 2rem;
+    text-align: center;
+}
+
+.produk-section h3 {
+    color: #e91e63;
+    margin-bottom: 2rem;
+}
+
+.produk-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1.5rem;
+    padding: 0 1rem;
+}
+
+.produk-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.produk-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.produk-card h4 {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: #333;
+}
+
+.harga {
+    color: #e91e63;
+    font-weight: bold;
+    margin-top: 0.3rem;
+}

@@ -5,6 +5,17 @@
 @section('content')
 
 <style>
+    body {
+        background: #f8f5f2;
+    }
+    .admin-main {
+        max-width: 480px;
+        margin: 0 auto;
+        background: #f8f5f2;
+        min-height: 100vh;
+        padding-bottom: 80px;
+        box-sizing: border-box;
+    }
     * {
         margin: 0;
         padding: 0;

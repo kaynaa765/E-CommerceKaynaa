@@ -6,8 +6,89 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>@yield('title')</title>
-    <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <style>
+        body {
+            font-family: var(--font-sans, 'Segoe UI', Arial, sans-serif);
+            margin: 0;
+            padding: 0;
+            background: #fff;
+            min-height: 100vh;
+        }
+        header {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: #E75480;
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(231, 84, 128, 0.08);
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        nav a, nav span {
+            color: #fff;
+            font-size: 15px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .cart-link-header {
+            position: relative;
+        }
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: #F44336;
+            color: #fff;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        main {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 16px 8px 80px 8px;
+            box-sizing: border-box;
+        }
+        footer {
+            max-width: 480px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 16px 8px 80px 8px;
+            color: #888;
+            font-size: 13px;
+        }
+        @media (max-width: 600px) {
+            header, main, footer {
+                max-width: 100vw;
+                padding-left: 4vw;
+                padding-right: 4vw;
+            }
+            .logo-img {
+                width: 28px;
+                height: 28px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>

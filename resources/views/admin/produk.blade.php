@@ -5,6 +5,186 @@
 @section('content')
 
 <style>
+        body {
+            background: #f8f5f2;
+        }
+        .admin-main {
+            width: 100%;
+            margin: 0;
+            background: #f8f5f2;
+            min-height: 100vh;
+            padding-bottom: 80px;
+            box-sizing: border-box;
+        }
+        .admin-header {
+            padding: 16px 8px 0 8px;
+            background: #f8f5f2;
+            border-radius: 16px;
+            margin-bottom: 18px;
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+        }
+        .admin-title {
+            font-size: 22px;
+            color: #a97c5a;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .admin-user-info {
+            font-size: 14px;
+            color: #7c6a5a;
+            background: #fff;
+            border-radius: 8px;
+            padding: 8px 14px;
+        }
+        .content-header {
+            background: linear-gradient(135deg, #f7e7e1 0%, #f8f5f2 100%);
+            border-radius: 14px;
+            padding: 18px 16px;
+            margin-bottom: 18px;
+            color: #a97c5a;
+            text-align: center;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .product-card {
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+            padding: 12px 8px 16px 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 0;
+        }
+        .product-card img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            background: #f8f5f2;
+        }
+        .product-name {
+            font-size: 14px;
+            color: #a97c5a;
+            font-weight: bold;
+            margin-bottom: 4px;
+            text-align: center;
+        }
+        .product-price {
+            font-size: 13px;
+            color: #7c6a5a;
+            margin-bottom: 4px;
+            text-align: center;
+        }
+        .product-rating {
+            font-size: 12px;
+            color: #FFD700;
+            margin-bottom: 4px;
+            text-align: center;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 6px;
+            margin-top: 6px;
+        }
+        .btn-edit, .btn-delete {
+            background: linear-gradient(135deg, #a97c5a 0%, #7c6a5a 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-edit:hover, .btn-delete:hover {
+            background: #7c6a5a;
+        }
+        @media (max-width: 600px) {
+            .admin-main {
+                max-width: 100vw;
+                border-radius: 0;
+            }
+            .products-grid {
+                gap: 10px;
+            }
+            .product-card {
+                padding: 8px 2px 12px 2px;
+            }
+            .product-card img {
+                width: 70px;
+                height: 70px;
+            }
+        }
+        /* Grid produk 2 kolom di mobile */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .product-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+            padding: 12px 8px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .product-card img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        .product-card .product-name {
+            font-size: 14px;
+            font-weight: bold;
+            color: #C91F6A;
+            margin-bottom: 4px;
+        }
+        .product-card .product-price {
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        .product-card .product-rating {
+            font-size: 12px;
+            color: #FFD700;
+            margin-bottom: 4px;
+        }
+        .product-card .action-buttons {
+            display: flex;
+            gap: 6px;
+            margin-top: 6px;
+        }
+        @media (max-width: 600px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            .product-card img {
+                width: 70px;
+                height: 70px;
+            }
+        }
     * {
         margin: 0;
         padding: 0;
@@ -351,113 +531,68 @@
                 <h2>Daftar Produk</h2>
                 <button class="btn-add" onclick="alert('Fitur tambah produk akan segera tersedia')">➕ Tambah Produk</button>
             </div>
-
-            <table class="products-table">
-                <thead>
-                    <tr>
-                        <th>Foto</th>
-                        <th>Nama Produk</th>
-                        <th>Kategori</th>
-                        <th>Harga</th>
-                        <th>Rating</th>
-                        <th>Terjual</th>
-                        <th>Status</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><img src="{{ asset('images/lipstick.jpg') }}" alt="Lipstick" class="product-img" onerror="this.src='https://via.placeholder.com/50'"></td>
-                        <td>Lipstick Matte Rose Pink</td>
-                        <td>Makeup</td>
-                        <td class="price">Rp 85.000</td>
-                        <td>⭐ 4.8</td>
-                        <td>156</td>
-                        <td><span class="status-badge status-active">✓ Aktif</span></td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn-edit" onclick="alert('Edit produk')">Edit</button>
-                                <button class="btn-delete" onclick="alert('Hapus produk')">Hapus</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><img src="{{ asset('images/foundation.jpg') }}" alt="Foundation" class="product-img" onerror="this.src='https://via.placeholder.com/50'"></td>
-                        <td>Foundation Liquid Natural Beige</td>
-                        <td>Makeup</td>
-                        <td class="price">Rp 125.000</td>
-                        <td>⭐ 4.7</td>
-                        <td>203</td>
-                        <td><span class="status-badge status-active">✓ Aktif</span></td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn-edit" onclick="alert('Edit produk')">Edit</button>
-                                <button class="btn-delete" onclick="alert('Hapus produk')">Hapus</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><img src="{{ asset('images/mascara.jpg') }}" alt="Mascara" class="product-img" onerror="this.src='https://via.placeholder.com/50'"></td>
-                        <td>Mascara Volume Black</td>
-                        <td>Makeup</td>
-                        <td class="price">Rp 65.000</td>
-                        <td>⭐ 4.9</td>
-                        <td>289</td>
-                        <td><span class="status-badge status-active">✓ Aktif</span></td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn-edit" onclick="alert('Edit produk')">Edit</button>
-                                <button class="btn-delete" onclick="alert('Hapus produk')">Hapus</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><img src="{{ asset('images/blush.jpg') }}" alt="Blush" class="product-img" onerror="this.src='https://via.placeholder.com/50'"></td>
-                        <td>Blush On Coral Glow</td>
-                        <td>Makeup</td>
-                        <td class="price">Rp 55.000</td>
-                        <td>⭐ 4.6</td>
-                        <td>124</td>
-                        <td><span class="status-badge status-active">✓ Aktif</span></td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn-edit" onclick="alert('Edit produk')">Edit</button>
-                                <button class="btn-delete" onclick="alert('Hapus produk')">Hapus</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><img src="{{ asset('images/eyeshadow.jpg') }}" alt="Eyeshadow" class="product-img" onerror="this.src='https://via.placeholder.com/50'"></td>
-                        <td>Eyeshadow Palette Nude</td>
-                        <td>Makeup</td>
-                        <td class="price">Rp 95.000</td>
-                        <td>⭐ 4.7</td>
-                        <td>178</td>
-                        <td><span class="status-badge status-active">✓ Aktif</span></td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn-edit" onclick="alert('Edit produk')">Edit</button>
-                                <button class="btn-delete" onclick="alert('Hapus produk')">Hapus</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><img src="{{ asset('images/cleanser.jpg') }}" alt="Cleanser" class="product-img" onerror="this.src='https://via.placeholder.com/50'"></td>
-                        <td>Facial Cleanser Gentle</td>
-                        <td>Skincare</td>
-                        <td class="price">Rp 75.000</td>
-                        <td>⭐ 4.8</td>
-                        <td>312</td>
-                        <td><span class="status-badge status-active">✓ Aktif</span></td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn-edit" onclick="alert('Edit produk')">Edit</button>
-                                <button class="btn-delete" onclick="alert('Hapus produk')">Hapus</button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="{{ asset('images/lipstick.jpg') }}" alt="Lipstick" onerror="this.src='https://via.placeholder.com/50'">
+                    <div class="product-name">Lipstick Matte Rose Pink</div>
+                    <div class="product-price">Rp 85.000</div>
+                    <div class="product-rating">⭐ 4.8</div>
+                    <div class="action-buttons">
+                        <button class="btn-edit" onclick="alert('Edit produk')">Edit</button>
+                        <button class="btn-delete" onclick="alert('Hapus produk')">Hapus</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="{{ asset('images/foundation.jpg') }}" alt="Foundation" onerror="this.src='https://via.placeholder.com/50'">
+                    <div class="product-name">Foundation Liquid Natural Beige</div>
+                    <div class="product-price">Rp 125.000</div>
+                    <div class="product-rating">⭐ 4.7</div>
+                    <div class="action-buttons">
+                        <button class="btn-edit" onclick="alert('Edit produk')">Edit</button>
+                        <button class="btn-delete" onclick="alert('Hapus produk')">Hapus</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="{{ asset('images/mascara.jpg') }}" alt="Mascara" onerror="this.src='https://via.placeholder.com/50'">
+                    <div class="product-name">Mascara Volume Black</div>
+                    <div class="product-price">Rp 65.000</div>
+                    <div class="product-rating">⭐ 4.9</div>
+                    <div class="action-buttons">
+                        <button class="btn-edit" onclick="alert('Edit produk')">Edit</button>
+                        <button class="btn-delete" onclick="alert('Hapus produk')">Hapus</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="{{ asset('images/blush.jpg') }}" alt="Blush" onerror="this.src='https://via.placeholder.com/50'">
+                    <div class="product-name">Blush On Coral Glow</div>
+                    <div class="product-price">Rp 55.000</div>
+                    <div class="product-rating">⭐ 4.6</div>
+                    <div class="action-buttons">
+                        <button class="btn-edit" onclick="alert('Edit produk')">Edit</button>
+                        <button class="btn-delete" onclick="alert('Hapus produk')">Hapus</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="{{ asset('images/eyeshadow.jpg') }}" alt="Eyeshadow" onerror="this.src='https://via.placeholder.com/50'">
+                    <div class="product-name">Eyeshadow Palette Nude</div>
+                    <div class="product-price">Rp 95.000</div>
+                    <div class="product-rating">⭐ 4.7</div>
+                    <div class="action-buttons">
+                        <button class="btn-edit" onclick="alert('Edit produk')">Edit</button>
+                        <button class="btn-delete" onclick="alert('Hapus produk')">Hapus</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="{{ asset('images/cleanser.jpg') }}" alt="Cleanser" onerror="this.src='https://via.placeholder.com/50'">
+                    <div class="product-name">Facial Cleanser Gentle</div>
+                    <div class="product-price">Rp 75.000</div>
+                    <div class="product-rating">⭐ 4.8</div>
+                    <div class="action-buttons">
+                        <button class="btn-edit" onclick="alert('Edit produk')">Edit</button>
+                        <button class="btn-delete" onclick="alert('Hapus produk')">Hapus</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 </div>

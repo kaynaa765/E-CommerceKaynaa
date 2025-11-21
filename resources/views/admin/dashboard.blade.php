@@ -3,8 +3,198 @@
 @section('title', 'Admin')
 
 @section('content')
+<style>
+    .admin-mobile-container { max-width: 480px; margin: 0 auto; background: #f8f5f2; min-height: 100vh; border-radius: 18px; box-shadow: 0 2px 16px rgba(0,0,0,0.04); padding-bottom: 40px; }
+    .admin-header-bar { display: flex; flex-direction: column; align-items: center; background: #fff; border-radius: 16px 16px 0 0; box-shadow: 0 1px 4px rgba(0,0,0,0.07); padding: 16px 0 0 0; margin-bottom: 0; position: relative; }
+    .admin-logo { font-size: 20px; font-weight: bold; color: #a97c5a; margin-bottom: 2px; }
+    .admin-role { font-size: 12px; color: #7c6a5a; margin-bottom: 8px; }
+    .admin-menu-bar { display: flex; justify-content: space-around; width: 100%; background: #fff; border-radius: 0 0 16px 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.03); margin-bottom: 8px; }
+    .admin-menu-link { display: flex; flex-direction: column; align-items: center; gap: 2px; color: #a97c5a; text-decoration: none; font-size: 13px; font-weight: 500; padding: 8px 0; border: none; background: none; cursor: pointer; transition: all 0.2s; }
+    .admin-menu-link.active { color: #C91F6A; font-weight: bold; border-bottom: 2px solid #C91F6A; }
+    .admin-menu-icon { font-size: 18px; }
+    .admin-logout-btn { position: absolute; top: 16px; right: 16px; width: auto; margin: 0; padding: 6px 18px; background: linear-gradient(135deg,#C91F6A 0%,#9d1545 100%); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 13px; display: block; }
+</style>
+<div class="admin-mobile-container">
+    <div class="admin-header-bar" style="padding-bottom:0;">
+        <div style="display:flex;align-items:center;justify-content:space-between;width:100%;padding:0 16px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+                <span style="font-size:32px;">📊</span>
+                <span style="font-size:28px;font-weight:bold;">Admin Dashboard</span>
+            </div>
+            <form action="{{ route('admin.logout') }}" method="POST" style="margin:0;">
+                @csrf
+                <button type="submit" class="admin-logout-btn">🚪 Logout</button>
+            </form>
+        </div>
+        <div style="text-align:left;padding:0 16px 8px 16px;font-size:15px;color:#444;">
+            <span style="font-size:18px;">👤 Admin</span>
+        </div>
+        <nav class="admin-menu-bar">
+            <a href="{{ route('admin.dashboard') }}" class="admin-menu-link active"><span class="admin-menu-icon">📊</span>Dashboard</a>
+            <a href="{{ route('stok.index') }}" class="admin-menu-link"><span class="admin-menu-icon">📦</span>Stok</a>
+            <a href="{{ route('pembelian.index') }}" class="admin-menu-link"><span class="admin-menu-icon">🛍️</span>Pembelian</a>
+            <a href="{{ route('penjualan.index') }}" class="admin-menu-link"><span class="admin-menu-icon">📈</span>Penjualan</a>
+            <a href="{{ route('admin.pengaturan') }}" class="admin-menu-link"><span class="admin-menu-icon">⚙️</span>Pengaturan</a>
+            <a href="{{ route('admin.admin') }}" class="admin-menu-link"><span class="admin-menu-icon">👤</span>Admin</a>
+        </nav>
+    </div>
+    <main class="admin-main" style="width:100%;margin:0;background:#f8f5f2;min-height:100vh;padding-bottom:40px;box-sizing:border-box;">
+        <!-- Konten utama tampil di sini -->
+    </main>
+</div>
 
 <style>
+        body {
+            background: #f8f5f2;
+        }
+        .admin-main {
+            width: 100%;
+            margin: 0;
+            background: #f8f5f2;
+            min-height: 100vh;
+            padding-bottom: 80px;
+            box-sizing: border-box;
+        }
+        .admin-header {
+            padding: 16px 8px 0 8px;
+            background: #f8f5f2;
+            border-radius: 16px;
+            margin-bottom: 18px;
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+        }
+        .admin-title {
+            font-size: 22px;
+            color: #a97c5a;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .admin-user-info {
+            font-size: 14px;
+            color: #7c6a5a;
+            background: #fff;
+            border-radius: 8px;
+            padding: 8px 14px;
+        }
+        .admin-content {
+            background: #fff;
+            border-radius: 16px;
+            padding: 18px 16px;
+            margin-bottom: 18px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+        }
+        .welcome-message {
+            background: linear-gradient(135deg, #f7e7e1 0%, #f8f5f2 100%);
+            border-radius: 14px;
+            padding: 18px 16px;
+            margin-bottom: 18px;
+            color: #a97c5a;
+        }
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+        .stat-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+            padding: 12px 8px 16px 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 0;
+        }
+        .stat-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+            color: #a97c5a;
+        }
+        .stat-label {
+            font-size: 13px;
+            color: #7c6a5a;
+            margin-bottom: 4px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 18px;
+            color: #a97c5a;
+            font-weight: bold;
+            margin-bottom: 4px;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .admin-main {
+                max-width: 100vw;
+                border-radius: 0;
+            }
+            .quick-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            .stat-card {
+                padding: 8px 2px 12px 2px;
+            }
+        }
+        /* Konten utama admin agar maksimal 480px dan di tengah layar */
+        .admin-main {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 24px 8px;
+            background: #f8f8f8;
+            min-height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            box-sizing: border-box;
+        }
+        .admin-content {
+            background: white;
+            border-radius: 16px;
+            padding: 24px 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            min-height: 400px;
+            width: 100%;
+            text-align: left;
+            box-sizing: border-box;
+        }
+        .admin-content-icon {
+            font-size: 70px;
+            margin-bottom: 24px;
+            opacity: 0.9;
+            width: 100%;
+            text-align: center;
+        }
+        .quick-stats {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            border-top: 4px solid #C91F6A;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .stat-card .stat-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+        @media (max-width: 600px) {
+            .admin-main {
+                max-width: 100vw;
+                padding-left: 4vw;
+                padding-right: 4vw;
+            }
+            .admin-content {
+                padding: 16px 4vw;
+            }
+        }
     * {
         margin: 0;
         padding: 0;
